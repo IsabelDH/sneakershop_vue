@@ -14,6 +14,9 @@ onMounted(() => {
 
 <template>
   <div>
+    <!-- <div id="app">
+       <Register /> 
+    </div> -->
     <Login v-if="!isLoggedIn" />
     <Dashboard v-if="isLoggedIn" />
   </div>

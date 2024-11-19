@@ -1,13 +1,19 @@
 <script>
-    export default {
-    name: "Dashboard",
-    };
+export default {
+  methods: {
+    logout() {
+      localStorage.removeItem("token");
+      this.$router.push("/");
+    },
+  },
+};
 </script>
 
 <template>
-    <div class="dashboard">
-      <h1>Welcome to the Dashboard</h1>
-    </div>
+    <div class="dashboard"> 
+    <h1>Welkom op het Dashboard!</h1>
+    <button @click="logout">Uitloggen</button>
+  </div>
   </template>
   
   <style scoped>
