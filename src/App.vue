@@ -1,7 +1,7 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-import Login from './components/Login/LoginUser.vue';
-import Dashboard from './components/Dashboard.vue';
+// import Login from './components/Login/LoginUser.vue';
+// import Dashboard from './components/Dashboard.vue';
 import { useRouter } from 'vue-router';
 
 const isLoggedIn = ref(false);
@@ -9,9 +9,9 @@ const router = useRouter();
 
 onMounted(() => {
   if (localStorage.getItem('token')) {
-    isLoggedIn.value = true;
+    router.push('/dashboard');
   } else {
-    isLoggedIn.value = false;
+    router.push('/login');
   }
 });
 </script>
@@ -19,8 +19,8 @@ onMounted(() => {
 <template>
   <div>
     <div id="app">
-      <Login v-if="!isLoggedIn" />
-    <Dashboard v-if="isLoggedIn" />
+      <!-- <Login v-if="!isLoggedIn" />
+    <Dashboard v-if="isLoggedIn" /> -->
     <router-view></router-view>
   </div>
   

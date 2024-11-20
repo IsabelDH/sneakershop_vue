@@ -1,5 +1,6 @@
 <script>
   import axios from 'axios';
+
   
   export default {
     data() {
@@ -157,11 +158,4 @@
       font-size: 15px; 
     }
   }
-  </style>  // Example login function
-  function login() {
-    // Perform login logic, then set the token
-    localStorage.setItem("token", "your-token");
-  
-    // Navigate to the dashboard
-    router.push('/dashboard');
-  }
+  </style>  
