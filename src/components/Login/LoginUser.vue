@@ -6,7 +6,6 @@
       return {
         email: '',
         password: '',
-        name: '',
         error: null,
       };
     },
@@ -17,17 +16,17 @@
             email: this.email,
             password: this.password,
           });
-         
-          
+
           const token = response.data.token;
           localStorage.setItem("token", token);
-  
-          // Redirect na succesvol inloggen
+
+          // Directly navigate to the dashboard without any delay
           this.$router.push('/dashboard');
         } catch (err) {
           this.error = 'Invalid login credentials. Please try again.';
         }
-      },
+      }
+
     },
   };
   </script>
@@ -158,6 +157,11 @@
       font-size: 15px; 
     }
   }
-  </style>
+  </style>  // Example login function
+  function login() {
+    // Perform login logic, then set the token
+    localStorage.setItem("token", "your-token");
   
-  
+    // Navigate to the dashboard
+    router.push('/dashboard');
+  }
