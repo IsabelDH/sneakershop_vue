@@ -18,22 +18,11 @@ onMounted(() => {
 
 <template>
   <div>
-    <div id="app">
-      <!-- <Login v-if="!isLoggedIn" />
-    <Dashboard v-if="isLoggedIn" /> -->
     <router-view></router-view>
-  </div>
-  
   </div>
 </template>
 
 <style scoped>
 
-  div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  
-  }
  
 </style>
