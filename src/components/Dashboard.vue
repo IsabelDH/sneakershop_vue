@@ -34,7 +34,7 @@ export default {
             <a href="contact.html" class="contact-link active btn">Contact</a>
         </div>
     </nav>
-  <div class="dashboard">
+  <div class="dashboard bg-primary">
     <h1>Welkom op het Dashboard!</h1>
     <button @click="logout">Uitloggen</button>
   </div>
