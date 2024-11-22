@@ -1,22 +1,32 @@
 <script setup>
 import { ref, onMounted } from 'vue';
-// import Login from './components/Login/LoginUser.vue';
-// import Dashboard from './components/Dashboard.vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
+import NavBar from './components/NavBar.vue';
 
-const isLoggedIn = ref(false);
+// Toon NavBar alleen als de route niet '/login' is
+const route = useRoute();
+// const showNavBar = ref(route.path !== '/login');
+
 const router = useRouter();
+const isLoggedIn = ref(false);
+
 
 onMounted(() => {
-  if (localStorage.getItem('token')) {
+  const token = localStorage.getItem('token');
+  isLoggedIn.value = !!token; // Zet de loginstatus op basis van de aanwezigheid van het token
+
+  // Zorg ervoor dat de router correct werkt
+  if (isLoggedIn.value) {
     router.push('/dashboard');
   } else {
     router.push('/login');
   }
 });
+
 </script>
 
 <template>
+     <NavBar v-if="isLoggedIn" :isLoggedIn="isLoggedIn" />
   <div>
     <router-view></router-view>
   </div>
