@@ -1,9 +1,9 @@
 <script>
+import Logout from './Login/Logout.vue';
 export default {
   data() {
     return {
-      // Standaard is de gebruiker niet ingelogd
-      isLoggedIn: false,
+      isLoggedIn: false,  // Gebruiker is niet ingelogd bij het laden
     };
   },
   mounted() {
@@ -14,9 +14,12 @@ export default {
     logout() {
       // Verwijder het token en stuur de gebruiker naar de loginpagina
       localStorage.removeItem("token");
-      this.isLoggedIn = false; // Zet de loginstatus naar false bij uitloggen
-      this.$router.push('/login');
+      this.isLoggedIn = false;  // Zet de loginstatus naar false bij uitloggen
+      this.$router.push('/login');  // Navigeer naar loginpagina
     },
+  },
+  components: {
+    Logout,  
   },
 };
   </script>
@@ -24,11 +27,11 @@ export default {
 <template>
     <nav class="navbar" v-if="isLoggedIn">
       <div class="logo">
-        <a href="#">MySneakerShop</a>
+        <a href="#"><img src="../../SWEAR_Logo.webp" alt="SWEAR logo"></a>
       </div>
       <ul class="nav-links">
         <li><router-link to="/dashboard">Dashboard</router-link></li>
-        <li><a @click="logout">Logout</a></li>
+        <li><Logout @logout="logout" /></li>
       </ul>
     </nav>
   
@@ -59,6 +62,10 @@ export default {
   text-decoration: none;
 }
 
+img{
+  width: 80%;
+}
+
 /* Navigatielinks */
 .nav-links {
   list-style: none;
@@ -68,6 +75,7 @@ export default {
 
 .nav-links li {
   font-size: 1rem;
+  margin-top: 20px;
 }
 
 .nav-links a {
@@ -77,7 +85,7 @@ export default {
 }
 
 .nav-links a:hover {
-  color: #ff6f61;
+  color: #64f243;
 }
   </style>
   
