@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="order-list">
     <h1>Orders</h1>
     <ul>
       <li v-for="order in orders" :key="order._id">

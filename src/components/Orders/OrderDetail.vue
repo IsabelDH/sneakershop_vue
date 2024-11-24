@@ -18,12 +18,18 @@
       };
     },
     async mounted() {
-  console.log('Order ID:', this.id);  // Dit zou de juiste ID moeten loggen
-  const response = await fetch(`https://sneakershop-6lmk.onrender.com/api/v1/orders/${this.id}`);
-  const data = await response.json();
-  console.log('Order Details:', data);  // Dit zou de orderdetails moeten loggen
-  this.order = data.order;
-}
+    // Log de ID om te controleren of het goed wordt doorgegeven
+    console.log('Order ID:', this.id);
+
+    try {
+      const response = await fetch(`https://sneakershop-6lmk.onrender.com/api/v1/orders/${this.id}`);
+      const data = await response.json();
+      this.order = data.order;  // Zet de opgehaalde order in de data
+      console.log('Order details:', this.order);  // Log de order details
+    } catch (error) {
+      console.error('Error fetching order details:', error);
+    }
+  },
 
   };
   </script>

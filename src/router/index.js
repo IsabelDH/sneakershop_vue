@@ -22,7 +22,7 @@ const routes = [
         component: OrderList, 
       },
       {
-        path: '/orders/:id', 
+        path: '../OrderDetail/:id', 
         name: 'OrderDetail',
         component: OrderDetail,
         props: true, 
