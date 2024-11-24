@@ -1,62 +1,46 @@
 <template>
-    <div>
-      <div v-if="orders.length === 0">Geen orders gevonden</div>
-      <table v-else>
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Klantennaam</th>
-            <th>Status</th>
-            <th>Acties</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="order in orders" :key="order.id">
-            <td>{{ order.id }}</td>
-            <td>{{ order.customerName }}</td>
-            <td>{{ order.status }}</td>
-            <td>
-              <OrderActions
-                :order-id="order.id"
-                @change-status="changeStatus"
-              />
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </template>
-  
-  <script>
-  import OrderActions from './OrderActions.vue';
-  
-  export default {
-    components: { OrderActions },
-    props: {
-      orders: {
-        type: Array,
-        default: () => []  // Zorgt ervoor dat orders altijd een lege array is als het undefined is
-      }
-    },
-    methods: {
-      changeStatus(orderId, status) {
-        this.$emit('change-status', orderId, status);
-      }
+  <div>
+    <h1>Orders</h1>
+    <ul>
+      <li v-for="order in orders" :key="order._id">
+        {{ order.user }} - {{ order.order }} - {{ order.status }}
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script>
+import axios from 'axios';
+
+export default {
+  data() {
+    return {
+      orders: [],
+    };
+  },
+  async mounted() {
+  try {
+    const token = localStorage.getItem('token'); 
+    if (!token) {
+      throw new Error('Geen token gevonden');
     }
-  };
-  </script>
-  
-  <style scoped>
-  table {
-    width: 100%;
-    margin: 20px auto;
-    border-collapse: collapse;
+
+    // Stuur de aanvraag met het token als autorisatie header
+    const response = await axios.get('https://sneakershop-6lmk.onrender.com/api/v1/orders', {
+      headers: {
+        Authorization: `Bearer ${token}` 
+      }
+    });
+
+    this.orders = response.data.data;
+  } catch (error) {
+    console.error('Er is een fout opgetreden bij het ophalen van de orders:', error);
   }
-  
-  th, td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-  }
-  </style>
-  
+}
+
+};
+</script>
+
+<style scoped>
+/* Jouw CSS styling */
+</style>

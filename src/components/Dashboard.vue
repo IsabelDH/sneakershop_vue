@@ -1,10 +1,3 @@
-<template>
-  <div class="dashboard">
-    <h1>Admin Dashboard</h1>
-    <OrderList :orders="orders" @change-status="changeStatus" />
-  </div>
-</template>
-
 <script>
 import OrderList from './Orders/OrderList.vue';
 
@@ -52,6 +45,13 @@ export default {
   }
 };
 </script>
+
+<template>
+  <div class="dashboard">
+    <h1>Admin Dashboard</h1>
+    <OrderList :orders="orders" @change-status="changeStatus" />
+  </div>
+</template>
 
 <style scoped>
 .dashboard {
