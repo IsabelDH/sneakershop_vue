@@ -3,7 +3,9 @@
     <h1>Orders</h1>
     <ul>
       <li v-for="order in orders" :key="order._id">
-        {{ order.user }} - {{ order.order }} - {{ order.status }}
+        <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
+          {{ order.user }} - {{ order.order }}
+        </router-link>
       </li>
     </ul>
   </div>

@@ -1,6 +1,7 @@
 <script>
 import OrderList from './Orders/OrderList.vue';
 
+
 export default {
   components: { OrderList },
   data() {
