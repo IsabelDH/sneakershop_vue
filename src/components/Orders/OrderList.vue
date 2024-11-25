@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       orders: [],
+      orderCount: 0, //teller voor het aantal orders
       socket: null,
     };
   },
@@ -24,6 +25,7 @@ export default {
     });
     console.log('API Response:', response);
     this.orders = response.data.data;
+    this.orderCount = this.orders.length; //tel het aantal orders
 
     this.socket = io('https://sneakershop-6lmk.onrender.com', {
   transports: ['websocket'], // Forceer websockets in plaats van polling
@@ -32,6 +34,7 @@ export default {
 this.socket.on('new order', (order) => {
   console.log('Nieuwe bestelling ontvangen:', order);
   this.orders.unshift(order);
+  this.orderCount += 1; //verhoog het aantal orders
   console.log('Bijgewerkte orders:', this.orders);  // Log de bijgewerkte array
 });
 
@@ -59,6 +62,7 @@ methods: {
         if (response.status === 200) {
           // Verwijder de bestelling uit de orders array in de frontend
           this.orders = this.orders.filter(order => order._id !== orderId);
+          this.orderCount -= 1; //verlaag het aantal orders
         } else {
           alert('Er is een fout opgetreden bij het verwijderen van de bestelling.');
         }
@@ -75,6 +79,7 @@ methods: {
 <template>
   <div class="order-list">
     <h1>Orders</h1>
+    <p>Total orders: {{ orderCount }}</p>
     <ul>
       <li v-for="order in orders" :key="order._id">
         <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
