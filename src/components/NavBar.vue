@@ -27,7 +27,7 @@ export default {
 <template>
     <nav class="navbar" v-if="isLoggedIn">
       <div class="logo">
-        <a href="#"><img src="../../SWEAR_Logo.webp" alt="SWEAR logo"></a>
+        <a href="/dashboard"><img src="../../SWEAR_Logo.webp" alt="SWEAR logo"></a>
       </div>
       <ul class="nav-links">
         <li><router-link to="/dashboard">Dashboard</router-link></li>
