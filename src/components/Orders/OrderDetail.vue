@@ -2,8 +2,8 @@
  <div class="order-detail">
     <h1>Order Detail</h1>
     <div v-if="order">
-      <p><strong>Gebruiker:</strong> {{ order.user }}</p>
-      <p><strong>Product:</strong> {{ order.order }}</p>
+      <p><strong>User:</strong> {{ order.user }}</p>
+      <p><strong>Order:</strong> {{ order.order }}</p>
       <p><strong>Status:</strong> {{ order.status }}</p>
       <OrderActions :orderId="order._id" @change-status="changeStatus" />
     </div>
@@ -67,6 +67,7 @@ export default {
             },
           }
         );
+        
 
         if (response.data.success) {
           // Werk de orderstatus lokaal bij
@@ -77,8 +78,9 @@ export default {
           alert('Er is een fout opgetreden bij het bijwerken van de status.');
         }
       } catch (error) {
-        console.error('Er is een fout opgetreden bij het wijzigen van de status:', error);
-        alert('Er is een fout opgetreden bij het wijzigen van de status.');
+        console.error('Er is een fout opgetreden bij het wijzigen van de status:', error.response ? error.response.data : error.message);
+  alert('Er is een fout opgetreden bij het wijzigen van de status. Zie de console voor meer details.');
+
       }
     },
   },
