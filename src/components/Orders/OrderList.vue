@@ -22,7 +22,7 @@ export default {
         Authorization: `Bearer ${token}` 
       }
     });
-
+    console.log('API Response:', response);
     this.orders = response.data.data;
 
     this.socket = io('https://sneakershop-6lmk.onrender.com', {
@@ -41,6 +41,34 @@ this.socket.on('new order', (order) => {
     console.error('Er is een fout opgetreden bij het ophalen van de orders:', error);
   }
 },
+methods: {
+    async deleteOrder(orderId) {
+      try {
+        const token = localStorage.getItem('token');
+        if (!token) {
+          throw new Error('Geen token gevonden');
+        }
+
+        // Verwijder de bestelling uit de API
+        const response = await axios.delete(`https://sneakershop-6lmk.onrender.com/api/v1/orders/${orderId}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status === 200) {
+          // Verwijder de bestelling uit de orders array in de frontend
+          this.orders = this.orders.filter(order => order._id !== orderId);
+        } else {
+          alert('Er is een fout opgetreden bij het verwijderen van de bestelling.');
+        }
+
+      } catch (error) {
+        console.error('Er is een fout opgetreden bij het verwijderen van de bestelling:', error);
+        alert('Er is een fout opgetreden bij het verwijderen van de bestelling.');
+      }
+    },
+  },
 };
 </script>
 
@@ -52,7 +80,7 @@ this.socket.on('new order', (order) => {
         <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
           {{ order.user }} - {{ order.order }} - {{ order.status }}
         </router-link>
-      
+        <button @click="deleteOrder(order._id)">Delete order</button>
       </li>
     </ul>
   </div>
