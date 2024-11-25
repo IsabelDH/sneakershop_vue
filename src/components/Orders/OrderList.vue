@@ -1,18 +1,6 @@
-<template>
-  <div class="order-list">
-    <h1>Orders</h1>
-    <ul>
-      <li v-for="order in orders" :key="order._id">
-        <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
-          {{ order.user }} - {{ order.order }}
-        </router-link>
-      </li>
-    </ul>
-  </div>
-</template>
-
 <script>
 import axios from 'axios';
+import OrderDetail from './OrderDetail.vue';
 
 export default {
   data() {
@@ -42,6 +30,19 @@ export default {
 
 };
 </script>
+
+<template>
+  <div class="order-list">
+    <h1>Orders</h1>
+    <ul>
+      <li v-for="order in orders" :key="order._id">
+        <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
+          {{ order.user }} - {{ order.order }}
+        </router-link>
+      </li>
+    </ul>
+  </div>
+</template>
 
 <style scoped>
 /* Jouw CSS styling */

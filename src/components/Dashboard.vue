@@ -1,9 +1,9 @@
 <script>
 import OrderList from './Orders/OrderList.vue';
-
+import NavBar from './NavBar.vue';
 
 export default {
-  components: { OrderList },
+  components: { OrderList, NavBar},
   data() {
     return {
       orders: [] // Lijst van orders
@@ -49,6 +49,7 @@ export default {
 
 <template>
   <div class="dashboard">
+    <NavBar @logout="logout" />
     <h1>Admin Dashboard</h1>
     <OrderList :orders="orders" @change-status="changeStatus" />
   </div>
