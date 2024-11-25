@@ -1,10 +1,12 @@
 <script>
 import axios from 'axios';
+import io from 'socket.io-client';
 
 export default {
   data() {
     return {
       orders: [],
+      socket: null,
     };
   },
   async mounted() {
@@ -22,6 +24,19 @@ export default {
     });
 
     this.orders = response.data.data;
+
+    this.socket = io('https://sneakershop-6lmk.onrender.com', {
+  transports: ['websocket'], // Forceer websockets in plaats van polling
+});
+// Luister naar het 'new-order' event
+this.socket.on('new order', (order) => {
+  console.log('Nieuwe bestelling ontvangen:', order);
+  this.orders.unshift(order);
+  console.log('Bijgewerkte orders:', this.orders);  // Log de bijgewerkte array
+});
+
+
+
   } catch (error) {
     console.error('Er is een fout opgetreden bij het ophalen van de orders:', error);
   }

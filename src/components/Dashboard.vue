@@ -17,7 +17,7 @@ export default {
       }
     });
     const data = await response.json();
-    this.orders = data.orders;
+    this.orders = data.data;
   },
   methods: {
     async changeStatus(orderId, status) {

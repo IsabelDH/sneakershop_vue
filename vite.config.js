@@ -12,6 +12,12 @@ export default defineConfig({
         secure: false, // Als je met een zelfondertekend certificaat werkt, stel dit in op false
         rewrite: (path) => path.replace(/^\/api/, ''), // Zorg ervoor dat /api correct wordt doorgegeven
       },
+      '/socket.io': {
+        target: 'https://sneakershop-6lmk.onrender.com', // WebSocket server
+        ws: true,  // Enable WebSocket proxying
+        changeOrigin: true,
+        secure: false,
+      },
     },
   },
 });
