@@ -1,6 +1,5 @@
 <script>
 import axios from 'axios';
-import OrderDetail from './OrderDetail.vue';
 
 export default {
   data() {

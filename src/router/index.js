@@ -20,15 +20,17 @@ const routes = [
     children: [
       {
         path: 'orders',
-        component: OrderList, 
-      },
-      {
-        path: '../OrderDetail/:id', 
-        name: 'OrderDetail',
-        component: OrderDetail,
-        props: true, 
+        name: 'OrderList',
+        component: OrderList,
       },
     ],
+  },
+  {
+    path: '/order/:id',
+    name: 'OrderDetail',
+    component: OrderDetail,
+    meta: { requiresAuth: true },
+    props: true, // Hiermee worden routeparameters als props doorgegeven
   },
 ];
 
