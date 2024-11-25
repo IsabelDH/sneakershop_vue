@@ -3,6 +3,8 @@
     <h1>Order Detail</h1>
     <div v-if="order">
       <p><strong>User:</strong> {{ order.user }}</p>
+      <p><strong>Email:</strong> {{ order.email }}</p>
+      <p><strong>Address:</strong> {{ order.address }}</p>
       <p><strong>Order:</strong> {{ order.order }}</p>
       <p><strong>Status:</strong> {{ order.status }}</p>
       <OrderActions :orderId="order._id" @change-status="changeStatus" />

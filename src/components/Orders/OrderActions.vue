@@ -1,9 +1,8 @@
 <template>
   <div>
-    <button @click="$emit('change-status', orderId, 'Send')">Send</button>
-    <button @click="$emit('change-status', orderId, 'Cancelled')">Cancelled</button>
-    <button @click="$emit('change-status', orderId, 'In production')">In production</button>
-    <button @click="$emit('change-status', orderId, 'Pending')">Pending</button>
+    <button @click="$emit('change-status', orderId, 'new order')">New order</button>
+    <button @click="$emit('change-status', orderId, 'cancelled')">Cancelled</button>
+    <button @click="$emit('change-status', orderId, 'pending')">Pending</button>
   </div>
 </template>
 
