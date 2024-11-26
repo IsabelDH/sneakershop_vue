@@ -1,8 +1,25 @@
+<template>
+  <div class="order-list">
+    <h1>Orders</h1>
+    <p>Total orders: {{ orderCount }}</p>
+    <ul>
+      <li v-for="order in orders" :key="order._id">
+        <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
+          {{ order.user }} - {{ order.order }} - {{ order.status }}
+        </router-link>
+        <button @click="deleteOrder(order._id)">Delete order</button>
+      </li>
+    </ul>
+  </div>
+</template>
+
+
 <script>
 import axios from 'axios';
 import io from 'socket.io-client';
 
 export default {
+  
   data() {
     return {
       orders: [],
@@ -45,6 +62,13 @@ this.socket.on('new order', (order) => {
   }
 },
 methods: {
+
+  updateOrderStatus(updatedOrder) {
+    const orderIndex = this.orders.findIndex(order => order._id === updatedOrder._id);
+    if (orderIndex !== -1) {
+      this.$set(this.orders, orderIndex, updatedOrder);
+    }
+  },
     async deleteOrder(orderId) {
       try {
         const token = localStorage.getItem('token');
@@ -72,24 +96,11 @@ methods: {
         alert('Er is een fout opgetreden bij het verwijderen van de bestelling.');
       }
     },
+    
   },
+  
 };
 </script>
-
-<template>
-  <div class="order-list">
-    <h1>Orders</h1>
-    <p>Total orders: {{ orderCount }}</p>
-    <ul>
-      <li v-for="order in orders" :key="order._id">
-        <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
-          {{ order.user }} - {{ order.order }} - {{ order.status }}
-        </router-link>
-        <button @click="deleteOrder(order._id)">Delete order</button>
-      </li>
-    </ul>
-  </div>
-</template>
 
 <style scoped>
 .order-list ul {

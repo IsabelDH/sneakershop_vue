@@ -7,6 +7,10 @@ import OrderDetail from '../components/Orders/OrderDetail.vue';
 
 const routes = [
   {
+    path: '/',
+    redirect: '/login', // Voeg deze regel toe
+  },
+  {
     path: '/login',
     name: 'Login',  
     component: Login,  
@@ -30,7 +34,7 @@ const routes = [
     name: 'OrderDetail',
     component: OrderDetail,
     meta: { requiresAuth: true },
-    props: true, // Hiermee worden routeparameters als props doorgegeven
+    props: true, 
   },
 ];
 

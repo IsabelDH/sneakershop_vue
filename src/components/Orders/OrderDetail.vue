@@ -51,40 +51,40 @@ export default {
     },
 
     // Wijzig de status van de order
-    async changeStatus(status) {
-      try {
-        const token = localStorage.getItem('token');
-        if (!token) {
-          throw new Error('Geen token gevonden');
-        }
+    async changeStatus(orderId, status) {
+  console.log("Te versturen payload:", { status });
+  try {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      throw new Error('Geen token gevonden');
+    }
 
-        // Verstuur de statusupdate naar de API
-        const response = await axios.put(
-          `https://sneakershop-6lmk.onrender.com/api/v1/orders/${this.id}`,
-          { status },
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              'Content-Type': 'application/json',
-            },
-          }
-        );
-        
-
-        if (response.data.success) {
-          // Werk de orderstatus lokaal bij
-          this.order.status = status; // Update de status van de huidige order
-          alert(`Status succesvol gewijzigd naar: ${status}`); // Feedback voor de gebruiker
-        } else {
-          console.error('Fout bij het bijwerken van de status:', response.data.message);
-          alert('Er is een fout opgetreden bij het bijwerken van de status.');
-        }
-      } catch (error) {
-        console.error('Er is een fout opgetreden bij het wijzigen van de status:', error.response ? error.response.data : error.message);
-  alert('Er is een fout opgetreden bij het wijzigen van de status. Zie de console voor meer details.');
-
+    // Verstuur de statusupdate naar de API
+    const response = await axios.put(
+      `https://sneakershop-6lmk.onrender.com/api/v1/orders/${this.id}`,
+      { status },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
       }
-    },
+    );
+
+    if (response.data && response.data.status === 'success') {
+      this.order.status = status; // Update de status van de huidige order
+    } else {
+      console.error('Fout bij het bijwerken van de status:', response.data.message);
+      alert('Er is een fout opgetreden bij het bijwerken van de status.');
+    }
+  } catch (error) {
+    console.error(
+      'Er is een fout opgetreden bij het wijzigen van de status:',
+      error.response ? error.response.data : error.message
+    );
+  }
+}
+
   },
 };
 
