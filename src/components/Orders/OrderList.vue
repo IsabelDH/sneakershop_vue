@@ -6,6 +6,8 @@
       <li v-for="order in orders" :key="order._id">
         <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
           {{ order.user }} - {{ order.order }} - {{ order.status }}
+          <br>Created at: {{ formatDate(order.createdAt) }}
+          <!-- <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }} -->
         </router-link>
         <button @click="deleteOrder(order._id)">Delete order</button>
       </li>
@@ -63,6 +65,10 @@ this.socket.on('new order', (order) => {
   }
 },
 methods: {
+  formatDate(date) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      return new Date(date).toLocaleDateString('en-US', options);
+    },
 
   updateOrderStatus(updatedOrder) {
     const orderIndex = this.orders.findIndex(order => order._id === updatedOrder._id);

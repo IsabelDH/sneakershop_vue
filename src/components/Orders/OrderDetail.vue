@@ -2,6 +2,7 @@
  <div class="order-detail">
     <h1>Order Detail</h1>
     <div v-if="order">
+      <p><strong> Created at:</strong>  {{ formatDate(order.createdAt) }}</p>
       <p><strong>User:</strong> {{ order.user }}</p>
       <p><strong>Email:</strong> {{ order.email }}</p>
       <p><strong>Address:</strong> {{ order.address }}</p>
@@ -31,6 +32,10 @@ export default {
     await this.fetchOrderDetails();
   },
   methods: {
+    formatDate(date) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+      return new Date(date).toLocaleDateString('en-US', options);
+    },
     async fetchOrderDetails() {
       try {
         const token = localStorage.getItem('token');
