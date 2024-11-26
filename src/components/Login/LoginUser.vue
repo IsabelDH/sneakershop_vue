@@ -122,7 +122,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  padding: 20px 30px;
 
   position: fixed;
   top: 0;
@@ -132,16 +132,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Logo */
-.navbar .logo a {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: #fff;
-  text-decoration: none;
-}
 
 img{
   width: 80%;
+  margin-top: 10px;
 }
   
   @media(max-width: 650px) {

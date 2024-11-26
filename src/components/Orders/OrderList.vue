@@ -9,7 +9,7 @@
           <p>Created at: {{ formatDate(order.createdAt) }}</p>
           <!-- <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }} -->
         </router-link>
-        <button @click="deleteOrder(order._id)" class=" btn text-white bg-black hover:text-black hover:bg-secondary py-1.1 font-bold">Delete order</button>
+        <button @click="deleteOrder(order._id)" class=" btn hover:text-white hover:bg-black text-black bg-secondary py-1.1 font-bold">Delete order</button>
       </li>
     </ul>
   </div>
