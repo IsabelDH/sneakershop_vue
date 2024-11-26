@@ -18,19 +18,19 @@
 <script>
 import axios from 'axios';
 import OrderActions from './OrderActions.vue';
+import NavBar from '../NavBar.vue';
 export default {
-  components: { OrderActions },
+  components: { OrderActions, NavBar },
   props: ['id'], // Ontvang de ID van de order via de router
   data() {
     return {
-      order: null, // Houdt de ordergegevens bij
+      order: null,
     };
   },
   async mounted() {
     await this.fetchOrderDetails();
   },
   methods: {
-    // Haal de orderdetails op bij de API
     async fetchOrderDetails() {
       try {
         const token = localStorage.getItem('token');

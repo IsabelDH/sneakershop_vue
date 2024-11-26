@@ -41,7 +41,7 @@ export default {
       }
     });
     console.log('API Response:', response);
-    this.orders = response.data.data;
+    this.orders = response.data.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
     this.orderCount = this.orders.length; //tel het aantal orders
 
     this.socket = io('https://sneakershop-6lmk.onrender.com', {
@@ -51,6 +51,7 @@ export default {
 this.socket.on('new order', (order) => {
   console.log('Nieuwe bestelling ontvangen:', order);
   this.orders.unshift(order);
+  this.orders = this.orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
   this.orderCount += 1; //verhoog het aantal orders
   console.log('Bijgewerkte orders:', this.orders);  // Log de bijgewerkte array
 });
