@@ -25,7 +25,7 @@ export default {
   </script>
 
 <template>
-    <nav class="navbar" v-if="isLoggedIn">
+    <nav class="navbar bg-offblack text-white" v-if="isLoggedIn">
       <div class="logo">
         <a href="/dashboard"><img src="../../SWEAR_Logo.webp" alt="SWEAR logo"></a>
       </div>
@@ -43,9 +43,8 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #222;
   padding: 10px 20px;
-  color: white;
+
   position: fixed;
   top: 0;
   left: 0;
@@ -79,7 +78,6 @@ img{
 }
 
 .nav-links a {
-  color: #fff;
   text-decoration: none;
   transition: color 0.3s ease;
 }

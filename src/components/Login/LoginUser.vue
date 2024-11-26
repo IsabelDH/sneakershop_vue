@@ -32,14 +32,20 @@
   </script>
   
   <template>
-    <div class="login">
-      <h2>Login</h2>
+     <nav class="navbar bg-offblack text-white">
+      <div class="logo">
+       <img src="/SWEAR_Logo.webp" alt="SWEAR logo">
+      </div>
+    </nav>
+    <div class="login bg-grey">
+      <h2 class="text-black text-2xl font-bold">Login admin</h2>
       <form @submit.prevent="login" name="loginForm">
         <div class="input-group">
-          <label for="email">Email</label>
+          <label for="email" class="text-black">Email</label>
           <input
             type="email"
             id="email"
+            class="text-black"
             v-model="email"
             placeholder="Email"
             required
@@ -47,39 +53,33 @@
         </div>
 
       <div class="input-group">
-        <label for="password">Password</label>
+        <label for="password"  class="text-black">Password</label>
         <input
           type="password"
           id="password"
+          class="text-black"
           v-model="password"
           placeholder="Password"
           required
         />
       </div>
 
-      <button type="submit">Login</button>
-        <p v-if="error" style="color:red;">{{ error }}</p>
+      <button type="submit" class="text-white bg-black hover:text-black hover:bg-secondary w-48 h-10 font-bold">Login</button>
+
+      <p v-if="error" class="text-red error">{{ error }}</p>
       </form>
     </div>
   </template>
   
   <style>
   .login {
-    max-width: 130%;
-    margin: 20px auto;
+    max-width: 70%; 
+    margin:  20vh auto;
     padding: 40px;
-    background-color: #062121;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(166, 167, 214, 0.1);
     display: flex; 
     flex-direction: column; 
     justify-content: center;
-  }
-  
-  h2 {
-    text-align: left;
-    margin-bottom: 20px;
-    color: #c1e4e3;
   }
   
   .input-group {
@@ -91,7 +91,6 @@
     font-weight: bold;
     margin-bottom: 5px;
     text-align: left;
-    color: #c3d0d7;
   }
   
   input {
@@ -106,31 +105,49 @@
   }
   
   button {
-    width: 100%; 
     padding: 10px;
-    background-color: #4CAF50;
-    color: #dce3e7;
+    margin-top: 60px;
     font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
   }
   
-  button:hover {
-    background-color: #45a049;
-  }
-  
   .error {
-    color: rgb(205, 29, 52);
-    font-size: 12px;
+    font-size: 17px;
     text-align: center;
-    margin-top: 10px;
+    margin-top: 20px;
   }
+  .navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Logo */
+.navbar .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+}
+
+img{
+  width: 80%;
+}
   
   @media(max-width: 650px) {
     .login {
-      max-width: 400px; 
       padding: 15px;
+      max-width: 80%;
     }
   
     h2 {
@@ -138,7 +155,6 @@
     }
   
     input, button {
-      width: 100%; 
       font-size: 14px;
     }
   
@@ -149,7 +165,6 @@
   
   @media(max-width: 1000px) {
     .login {
-      max-width: 500px; 
       padding: 20px;
     }
   
