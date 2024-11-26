@@ -50,7 +50,6 @@ export default {
 <template>
   <div class="dashboard">
     <NavBar @logout="logout" />
-    <h1>Admin Dashboard</h1>
     <OrderList :orders="orders" @change-status="changeStatus" />
   </div>
 </template>
@@ -58,6 +57,7 @@ export default {
 <style scoped>
 .dashboard {
   margin: 20px;
+  margin-top: 10vh;
   text-align: center;
 }
 </style>

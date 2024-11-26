@@ -30,21 +30,20 @@ export default {
         <a href="/dashboard"><img src="../../SWEAR_Logo.webp" alt="SWEAR logo"></a>
       </div>
       <ul class="nav-links">
-        <li><router-link to="/dashboard">Dashboard</router-link></li>
-        <li><Logout @logout="logout" /></li>
+        <li class="text-white"><router-link class="font-medium hover:text-primary" to="/dashboard">Dashboard</router-link></li>
+        <li class="font-medium"><Logout @logout="logout" /></li>
       </ul>
     </nav>
   
 </template>
 
   
-  <style>
+<style>
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-
   position: fixed;
   top: 0;
   left: 0;
@@ -81,9 +80,5 @@ img{
   text-decoration: none;
   transition: color 0.3s ease;
 }
-
-.nav-links a:hover {
-  color: #64f243;
-}
-  </style>
+</style>
   

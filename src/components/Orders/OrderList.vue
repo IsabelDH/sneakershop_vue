@@ -1,15 +1,15 @@
 <template>
   <div class="order-list">
-    <h1>Orders</h1>
-    <p>Total orders: {{ orderCount }}</p>
-    <ul>
-      <li v-for="order in orders" :key="order._id">
-        <router-link :to="{ name: 'OrderDetail', params: { id: order._id }}">
+    <h1 class="text-black text-4xl font-bold">Orders</h1>
+    <p class="processed text-l"><strong>Total orders being processed:</strong> {{ orderCount }}</p>
+    <ul class="border-primary">
+      <li class="text-l font-semibold  text-black bg-white hover:text-black hover:bg-secondary" v-for="order in orders" :key="order._id">
+        <router-link class=" hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
           {{ order.user }} - {{ order.order }} - {{ order.status }}
-          <br>Created at: {{ formatDate(order.createdAt) }}
+          <p>Created at: {{ formatDate(order.createdAt) }}</p>
           <!-- <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }} -->
         </router-link>
-        <button @click="deleteOrder(order._id)" class="bg-black text-white">Delete order</button>
+        <button @click="deleteOrder(order._id)" class=" btn text-white bg-black hover:text-black hover:bg-secondary py-1.1 font-bold">Delete order</button>
       </li>
     </ul>
   </div>
@@ -110,14 +110,38 @@ methods: {
 </script>
 
 <style scoped>
+h1{
+  margin-bottom: 20px;
+  border-bottom: 2px solid #5dde40;
+}
+
+.processed{
+  margin-bottom: 20px;
+}
+
+
+.btn{
+  margin-top: 10%;
+  margin-bottom: 2px;
+}
+
 .order-list ul {
   list-style: none;
   padding: 0;
+
+  gap: 15px;
+  display: flex;
+  flex-wrap: wrap; 
+  justify-content: flex-start; 
+  gap: 20px; 
 }
 
 .order-list li {
+  display: flex;
+  flex-direction: column;
   margin-bottom: 15px;
   padding: 10px;
   border: 1px solid #ddd;
 }
+
 </style>
