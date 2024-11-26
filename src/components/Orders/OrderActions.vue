@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button @click="$emit('change-status', orderId, 'new order')">New order</button>
-    <button @click="$emit('change-status', orderId, 'pending')">Pending</button>
-    <button @click="$emit('change-status', orderId, 'delivered')">Delivered</button>
-    <button @click="$emit('change-status', orderId, 'cancelled')">Cancelled</button>
+    <button @click="$emit('change-status', orderId, 'new order')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">New order</button>
+    <button @click="$emit('change-status', orderId, 'pending')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Pending</button>
+    <button @click="$emit('change-status', orderId, 'delivered')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Delivered</button>
+    <button @click="$emit('change-status', orderId, 'cancelled')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Cancelled</button>
   </div>
 </template>
 
@@ -19,15 +19,9 @@ button {
   margin: 10px;
   padding: 10px 10px;
   font-size: 16px;
-  background-color: #000000;
-  color: white;
   border: none;
   cursor: pointer;
 }
 
-button:hover {
-  background-color: #38d655 ;
-  color: black;
-}
 
 </style>

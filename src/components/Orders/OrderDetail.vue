@@ -1,8 +1,8 @@
 <template>
  <div class="order-detail">
-    <h1>Order Detail</h1>
-    <div v-if="order">
-      <p><strong> Created at:</strong>  {{ formatDate(order.createdAt) }}</p>
+    <h1 class="text-black text-3xl font-bold">Order Detail</h1>
+    <div class="details" v-if="order">
+      <p><strong>Created at:</strong>  {{ formatDate(order.createdAt) }}</p>
       <p><strong>User:</strong> {{ order.user }}</p>
       <p><strong>Email:</strong> {{ order.email }}</p>
       <p><strong>Address:</strong> {{ order.address }}</p>
@@ -92,71 +92,40 @@ export default {
 
   },
 };
-
-// export default {
-//   props: ['id'], // Ontvang de ID als prop via de router
-//   data() {
-//     return {
-//       order: null,
-//     };
-//   },
-//   async mounted() {
-//     try {
-//       const token = localStorage.getItem('token');
-//       if (!token) {
-//         throw new Error('Geen token gevonden');
-//       }
-
-//       const response = await axios.get(`https://sneakershop-6lmk.onrender.com/api/v1/orders/${this.id}`, {
-//         headers: {
-//           Authorization: `Bearer ${token}`,
-//         },
-//       });
-
-//       this.order = response.data.data;
-//     } catch (error) {
-//       console.error('Er is een fout opgetreden bij het ophalen van de orderdetails:', error);
-//     }
-//   },
-//   methods: {
-//     async changeStatus(orderId, status) {
-//       try {
-//         const token = localStorage.getItem('token');
-//         if (!token) {
-//           throw new Error('Geen token gevonden');
-//         }
-
-//         // Verstuur status update naar de API
-//         const response = await axios.put(
-//           `https://sneakershop-6lmk.onrender.com/api/v1/orders/${orderId}`,
-//           { status },
-//           {
-//             headers: {
-//               Authorization: `Bearer ${token}`,
-//               'Content-Type': 'application/json',
-//             },
-//           }
-//         );
-
-//         if (response.data.success) {
-//           // Werk de status lokaal bij
-//           this.orders = this.orders.map(order =>
-//             order._id === orderId ? { ...order, status } : order
-//           );
-//         } else {
-//           console.error('Fout bij het bijwerken van de status:', response.data.message);
-//         }
-//       } catch (error) {
-//         console.error('Er is een fout opgetreden bij het wijzigen van de status:', error);
-//       }
-//     },
-//   },
-// };
 </script>
 <style scoped>
 .order-detail {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  text-align: left; 
 }
+
+h1 {
+  margin-top: 20%;
+  border-bottom: 2px solid #5dde40;
+  margin-bottom: 20px;
+  width: 100%;  
+  text-align: center;  
+}
+
+.order-detail p {
+  margin-bottom: 10px;  
+}
+
+@media(min-width: 1000px) {
+  .details {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left; 
+    margin-left: 35%;
+  }
+  h1{
+    margin-top: 10%;
+  }
+}
+
 
 </style>
 
