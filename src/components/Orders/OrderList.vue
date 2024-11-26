@@ -9,7 +9,7 @@
           <br>Created at: {{ formatDate(order.createdAt) }}
           <!-- <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }} -->
         </router-link>
-        <button @click="deleteOrder(order._id)">Delete order</button>
+        <button @click="deleteOrder(order._id)" class="bg-black text-white">Delete order</button>
       </li>
     </ul>
   </div>

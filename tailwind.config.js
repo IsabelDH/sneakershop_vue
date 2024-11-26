@@ -4,11 +4,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#FF6363',
-        'secondary': {
-          100: '#E2E2D5',
-          200: '#888883',
-        }
+        'white': '#FFFFFF',
+        'primary': '#5dde40', //fel groen
+        'secondary': '#a7bf49', //lichr groen voor btn
+        'black': '#000000',
       },
     },
   },
