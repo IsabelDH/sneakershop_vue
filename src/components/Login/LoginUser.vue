@@ -80,6 +80,7 @@
     display: flex; 
     flex-direction: column; 
     justify-content: center;
+    border: #5dde40 solid 1px;
   }
   
   .input-group {

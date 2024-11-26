@@ -31,6 +31,7 @@ export default {
       </div>
       <ul class="nav-links">
         <li class="text-white"><router-link class="font-medium hover:text-primary" to="/dashboard">Dashboard</router-link></li>
+        <li><router-link class="font-medium hover:text-primary"  to="/change-password">Account</router-link></li>
         <li class="font-medium"><Logout @logout="logout" /></li>
       </ul>
     </nav>

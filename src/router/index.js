@@ -4,6 +4,7 @@ import Login from '../components/Login/LoginUser.vue'
 import Dashboard from '../components/Dashboard.vue';
 import OrderList from '../components/Orders/OrderList.vue'; 
 import OrderDetail from '../components/Orders/OrderDetail.vue';  
+import ChangePassword from '../components/ChangePassword.vue';
 
 const routes = [
   {
@@ -36,6 +37,12 @@ const routes = [
     meta: { requiresAuth: true },
     props: true, 
   },
+  {
+    path: '/change-password',
+    name: 'ChangePassword',
+    component: ChangePassword,
+  }
+  
 ];
 
 // Maak de router aan
