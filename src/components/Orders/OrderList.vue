@@ -1,19 +1,46 @@
 <template>
   <div class="order-list">
     <h1 class="text-black text-4xl font-bold">Orders</h1>
-    <p class="processed text-l"><strong>Total orders being processed:</strong> {{ orderCount }}</p>
-    <ul class="border-primary">
+    <h2 class="processed text-xl"><strong>Total orders:</strong> {{ orderCount }}</h2> 
+    <table class="table-auto w-full border-collapse border border-gray-200">
+      <thead>
+        <tr class="bg-grey">
+          <th class="border border-gray-200 px-4 py-2 text-left">Order</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Customer</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Status</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Created at</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Delete order</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="order in orders" :key="order._id" class="hover:bg-gray-100">
+          <td class="border border-gray-200 px-4 py-2">
+            <router-link class="hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
+              {{ order.order || 'N/A' }}
+            </router-link>
+          </td>
+          <td class="border border-gray-200 px-4 py-2">{{ order.user || 'N/A' }}</td>
+          <td class="border border-gray-200 px-4 py-2">{{ order.status || 'N/A' }}</td>
+          <td class="border border-gray-200 px-4 py-2">{{ formatDate(order.createdAt) }}</td>
+          <td class="border border-gray-200 px-4 py-2">
+            <button @click="deleteOrder(order._id)" class="btn text-white bg-black hover:text-black hover:bg-secondary py-1.1 font-bold">Delete order</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</template>
+    <!-- <p class="processed text-l"><strong>Total orders being processed:</strong> {{ orderCount }}</p> 
+      <ul class="border-primary">
       <li class="text-l font-semibold  text-black bg-white hover:text-black hover:bg-secondary" v-for="order in orders" :key="order._id">
         <router-link class=" hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
           {{ order.user }} - {{ order.order }} - {{ order.status }}
           <p>Created at: {{ formatDate(order.createdAt) }}</p>
-          <!-- <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }} -->
+         <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }}
         </router-link>
         <button @click="deleteOrder(order._id)" class=" btn hover:text-white hover:bg-black text-black bg-secondary py-1.1 font-bold">Delete order</button>
       </li>
-    </ul>
-  </div>
-</template>
+    </ul> -->
 
 
 <script>
@@ -57,9 +84,6 @@ this.socket.on('new order', (order) => {
   this.orderCount += 1; //verhoog het aantal orders
   console.log('Bijgewerkte orders:', this.orders);  // Log de bijgewerkte array
 });
-
-
-
   } catch (error) {
     console.error('Er is een fout opgetreden bij het ophalen van de orders:', error);
   }
