@@ -1,9 +1,9 @@
 <template>
   <div>
-    <button @click="$emit('change-status', orderId, 'new order')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">New order</button>
-    <button @click="$emit('change-status', orderId, 'pending')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Pending</button>
-    <button @click="$emit('change-status', orderId, 'delivered')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Delivered</button>
-    <button @click="$emit('change-status', orderId, 'cancelled')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Cancelled</button>
+    <button @click="$emit('change-status', orderId, 'New order')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">New order</button>
+    <button @click="$emit('change-status', orderId, 'Pending')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Pending</button>
+    <button @click="$emit('change-status', orderId, 'Delivered')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Delivered</button>
+    <button @click="$emit('change-status', orderId, 'Cancelled')" class="text-white bg-black hover:text-black hover:bg-secondary font-bold">Cancelled</button>
   </div>
 </template>
 
