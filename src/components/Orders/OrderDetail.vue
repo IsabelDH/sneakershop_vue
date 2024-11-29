@@ -7,8 +7,8 @@
       <p><strong>Email:</strong> {{ order.email }}</p>
       <p><strong>Address:</strong> {{ order.address }}</p>
       <p><strong>Order:</strong> {{ order.order }}</p>
-      <p><strong>Status:</strong> {{ order.status }}</p>
-      <OrderActions :orderId="order._id" @change-status="changeStatus" />
+      <!-- <p><strong>Status:</strong> {{ order.status }}</p> -->
+      <OrderActions :orderId="order._id" :currentStatus="order.status"  @change-status="changeStatus" />
     </div>
     <div v-else>
       <p>Order details are being loaded...</p>
