@@ -1,61 +1,3 @@
-<template>
-  <div class="order-list">
-    <h1 class="text-black text-4xl font-bold">Orders</h1>
-    <h2 class="processed text-xl"><strong>Total orders:</strong> {{ orderCount }}</h2> 
-
-    <div class="status-filter mb-4">
-      <label for="status" class="mr-2">Filter by status:</label>
-      <select v-model="selectedStatus" id="status" class="border px-4 py-2  bg-white" @change="filteredOrders">
-        <option value="">All</option>
-        <option value="New order">New order</option>
-        <option value="Pending">Pending</option>
-        <option value="Delivered">Delivered</option>
-        <option value="Cancelled">Cancelled</option>
-      </select>
-    </div>
-
-    <div class="table-responsive">
-    <table class="table-auto w-full border-collapse border border-gray-200">
-      <thead>
-        <tr class="bg-grey">
-          <th class="border border-gray-200 px-4 py-2 text-left">Order</th>
-          <th class="border border-gray-200 px-4 py-2 text-left">Customer</th>
-          <th class="border border-gray-200 px-4 py-2 text-left">Status</th>
-          <th class="border border-gray-200 px-4 py-2 text-left">Created at</th>
-          <th class="border border-gray-200 px-4 py-2 text-left">Delete order</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr v-for="order in orders" :key="order._id" class="hover:bg-gray-100">
-          <td class="border hover:bg-primary border-gray-200 px-4 py-2">
-            <router-link class="hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
-              {{ order.order || 'N/A' }}
-            </router-link>
-          </td>
-          <td class="border border-gray-200 px-4 py-2">{{ order.user || 'N/A' }}</td>
-          <td class="border border-gray-200 px-4 py-2"><strong>{{ order.status || 'N/A' }}</strong></td>
-          <td class="border border-gray-200 px-4 py-2">{{ formatDate(order.createdAt) }}</td>
-          <td class="border border-gray-200 px-4 py-2">
-            <button @click="deleteOrder(order._id)" class="btn text-white bg-black hover:text-black hover:bg-secondary py-1.1 font-bold">Delete order</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </div>
-</template>
-    <!-- <p class="processed text-l"><strong>Total orders being processed:</strong> {{ orderCount }}</p> 
-      <ul class="border-primary">
-      <li class="text-l font-semibold  text-black bg-white hover:text-black hover:bg-secondary" v-for="order in orders" :key="order._id">
-        <router-link class=" hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
-          {{ order.user }} - {{ order.order }} - {{ order.status }}
-          <p>Created at: {{ formatDate(order.createdAt) }}</p>
-         <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }}
-        </router-link>
-        <button @click="deleteOrder(order._id)" class=" btn hover:text-white hover:bg-black text-black bg-secondary py-1.1 font-bold">Delete order</button>
-      </li>
-    </ul> -->
-
 
 <script>
 import axios from 'axios';
@@ -98,7 +40,7 @@ export default {
     transports: ['websocket'], // Forceer websockets in plaats van polling
 });
 // Luister naar het 'new-order' event
-this.socket.on('new order', (order) => {
+this.socket.on('New order', (order) => {
   console.log('Nieuwe bestelling ontvangen:', order);
   this.orders.unshift(order);
   this.orders = this.orders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
@@ -166,6 +108,66 @@ methods: {
 };
 </script>
 
+<template>
+  <div class="order-list">
+    <h1 class="text-black text-4xl font-bold">Orders</h1>
+    <h2 class="processed text-xl"><strong>Total orders:</strong> {{ orderCount }}</h2> 
+
+    <div class="status-filter mb-4">
+      <label for="status" class="mr-2">Filter by status:</label>
+      <select v-model="selectedStatus" id="status" class="border px-4 py-2  bg-white" @change="filteredOrders">
+        <option value="">All</option>
+        <option value="New order">New order</option>
+        <option value="Pending">Pending</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+      </select>
+    </div>
+
+    <div class="table-responsive">
+    <table class="table-auto w-full border-collapse border border-gray-200">
+      <thead>
+        <tr class="bg-grey">
+          <th class="border border-gray-200 px-4 py-2 text-left">Order</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Customer</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Status</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Created at</th>
+          <th class="border border-gray-200 px-4 py-2 text-left">Delete order</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="order in orders" :key="order._id" class="hover:bg-gray-100">
+          <td class="border hover:bg-primary border-gray-200 px-4 py-2">
+            <router-link class="hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
+              {{ order.order || 'N/A' }}
+            </router-link>
+          </td>
+          <td class="border border-gray-200 px-4 py-2">{{ order.user || 'N/A' }}</td>
+          <td class="border border-gray-200 px-4 py-2"><strong>{{ order.status || 'N/A' }}</strong></td>
+          <td class="border border-gray-200 px-4 py-2">{{ formatDate(order.createdAt) }}</td>
+          <td class="border border-gray-200 px-4 py-2">
+            <button @click="deleteOrder(order._id)" class="btn text-white bg-black hover:text-black hover:bg-secondary py-1.1 font-bold">Delete order</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <div class="spacing-below-table"></div>
+  </div>
+</template>
+    <!-- <p class="processed text-l"><strong>Total orders being processed:</strong> {{ orderCount }}</p> 
+      <ul class="border-primary">
+      <li class="text-l font-semibold  text-black bg-white hover:text-black hover:bg-secondary" v-for="order in orders" :key="order._id">
+        <router-link class=" hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
+          {{ order.user }} - {{ order.order }} - {{ order.status }}
+          <p>Created at: {{ formatDate(order.createdAt) }}</p>
+         <br v-if="order.statusChangedAt">Status Changed At: {{ formatDate(order.statusChangedAt) }}
+        </router-link>
+        <button @click="deleteOrder(order._id)" class=" btn hover:text-white hover:bg-black text-black bg-secondary py-1.1 font-bold">Delete order</button>
+      </li>
+    </ul> -->
+
+
 <style scoped>
 h1{
   margin-bottom: 20px;
@@ -196,9 +198,13 @@ h1{
 
 /* Responsieve container */
 .table-responsive {
-  margin-bottom: 20px;
+  margin-bottom: 60px;
   margin-left: -50px;
 }
+.spacing-below-table {
+  height: 20px; /* Of een andere hoogte die je prettig vindt */
+}
+
 
 /* Stijl voor de tabel en cellen */
 table {
@@ -221,6 +227,10 @@ tr:nth-child(even) {
   margin-bottom: 2px;
   padding: 5px 10px;
   
+}
+
+.order-list{
+  margin-bottom: 50px;
 }
 
 .order-list ul {
