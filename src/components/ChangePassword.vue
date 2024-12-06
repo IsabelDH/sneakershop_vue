@@ -8,7 +8,7 @@
           <input
             type="password"
             id="oldPassword"
-            v-model="oldPassword"
+            v-model= "oldPassword"
             placeholder="Current password"
             required
           />
@@ -19,7 +19,7 @@
           <input
             type="password"
             id="newPassword"
-            v-model="newPassword"
+            v-model= "newPassword"
             placeholder="New password"
             required
           />
@@ -36,10 +36,11 @@
           />
         </div>
         
-        <button type="submit" class="text-white bg-black hover:text-black hover:bg-secondary w-48 h-10 font-bold">
-          Change password
+        <button type="submit" :disabled="loading" class="text-white bg-black hover:text-black hover:bg-secondary w-48 h-10 font-bold">
+          <span v-if="loading">Changing...</span>
+          <span v-else>Change password</span>
         </button>
-  
+    
         <p v-if="error" class="text-red-500 mt-4">{{ error }}</p>
         <p v-if="success" class="text-green-500 mt-4">{{ success }}</p>
       </form>
@@ -104,9 +105,11 @@
             this.error = response.data.message || 'An error occurred';
           }
         } catch (err) {
-          this.error =
-            err.response?.data?.message || 'An error occurred while changing the password.';
-        }
+        this.error =
+          err.response?.data?.message || 'An error occurred while changing the password.';
+      } finally {
+        this.loading = false; // Zet loading weer op false
+      }
       },
     },
   };
