@@ -57,9 +57,11 @@ router.beforeEach((to, from, next) => {
 
   // Als de route authenticatie vereist en de gebruiker is niet ingelogd
   if (to.matched.some(record => record.meta.requiresAuth) && !isAuthenticated) {
-    next('/');  // Ga naar de root route (loginpagina)
-  } else if (to.path === '/' && isAuthenticated) {
-    next('/dashboard');  // Als de gebruiker ingelogd is, ga naar het dashboard
+    next('/login');  // Ga naar de root route (loginpagina)
+  } else if (to.name === 'Login' && isAuthenticated) {
+    next('/dashboard');
+  // } else if (to.path === '/' && isAuthenticated) {
+  //   next('/dashboard');  // Als de gebruiker ingelogd is, ga naar het dashboard
   } else {
     next();  // Volg de oorspronkelijke route
   }
