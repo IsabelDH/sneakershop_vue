@@ -58,7 +58,7 @@ export default {
     } else {
       // Als het token bestaat, ga verder en laad de orderdetails
       next(vm => {
-        vm.fetchOrderDetails();
+        vm.fetchOrderDetails(to.params.id);
       });
     }
   },
