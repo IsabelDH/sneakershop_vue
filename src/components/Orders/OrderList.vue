@@ -146,7 +146,7 @@ methods: {
           <td class="border border-gray-200 px-4 py-2"><strong>{{ order.status || 'N/A' }}</strong></td>
           <td class="border border-gray-200 px-4 py-2">{{ formatDate(order.createdAt) }}</td>
           <td class="border border-gray-200 px-4 py-2">
-            <button @click="deleteOrder(order._id)" class="btn text-white bg-black hover:text-black hover:bg-secondary py-1.1 font-bold">Delete order</button>
+            <button @click="deleteOrder(order._id)" class="btn text-white bg-black hover:text-white hover:bg-red py-1.1 font-bold">Delete order</button>
           </td>
         </tr>
       </tbody>
@@ -202,11 +202,24 @@ h1{
   margin-left: -50px;
 }
 .spacing-below-table {
-  height: 20px; /* Of een andere hoogte die je prettig vindt */
+  height: 20px; 
 }
 
-
 /* Stijl voor de tabel en cellen */
+table tbody tr:hover {
+  background-color: #5dde40; 
+}
+
+/* Hover tekstkleur bij links */
+table tbody tr:hover .nameOrder-link {
+  color: black;  
+}
+
+/* Hover-effect voor de tabelcel */
+table tbody tr:hover td {
+  background-color: #5dde40;  
+}
+
 table {
   width: 100%;
   border-collapse: collapse;
@@ -219,6 +232,7 @@ th, td {
 th {
   background-color: #f4f4f4;
 }
+
 tr:nth-child(even) {
   background-color: #f9f9f9;
 }
