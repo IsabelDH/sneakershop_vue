@@ -15,11 +15,11 @@
             <li><strong>Material:</strong> {{ item.material || 'N/A' }}</li>
             <li><strong>Color:</strong> {{ item.color || 'N/A' }}</li>
             <li><strong>Charm:</strong> 
-              <span v-if="item.charm && typeof item.charm === 'object'">
+              <span v-if="item.charm">
                 Name: {{ item.charm.name || 'N/A' }} | 
                 Position: {{ item.charm.position || 'N/A' }}
               </span>
-              <span v-else> {{ item.charm || 'N/A' }}</span>
+              <span v-else>N/A</span>
             </li>
             <li><strong>Size:</strong> {{ item.size || 'N/A' }}</li>
             <li><strong>Quantity:</strong> {{ item.quantity || 'N/A' }}</li>
