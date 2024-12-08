@@ -27,7 +27,7 @@ export default {
 <template>
     <nav class="navbar bg-offblack text-white" v-if="isLoggedIn">
       <div class="logo">
-        <a href="/dashboard"><img src="../../SWEAR_Logo.webp" alt="SWEAR logo"></a>
+        <a href="/dashboard"><img src="/SWEAR_Logo.webp" alt="SWEAR logo"></a>
       </div>
       <ul class="nav-links">
         <li class="text-white"><router-link class="font-medium hover:text-primary" to="/dashboard">Dashboard</router-link></li>
