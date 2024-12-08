@@ -139,7 +139,7 @@ methods: {
         <tr v-for="order in orders" :key="order._id" class="hover:bg-gray-100">
           <td class="border hover:bg-primary border-gray-200 px-4 py-2">
             <router-link class="hover:text-black" :to="{ name: 'OrderDetail', params: { id: order._id }}">
-              {{ order.order || 'N/A' }}
+              {{ order.nameOrder || 'N/A' }}
             </router-link>
           </td>
           <td class="border border-gray-200 px-4 py-2">{{ order.user || 'N/A' }}</td>

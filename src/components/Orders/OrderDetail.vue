@@ -6,6 +6,7 @@
       <p><strong>User:</strong> {{ order.user }}</p>
       <p><strong>Email:</strong> {{ order.email }}</p>
       <p><strong>Address:</strong> {{ order.address }}</p>
+      <p><strong>Name of order:</strong> {{ order.nameOrder }}</p>
       <p><strong>Order:</strong> {{ order.order }}</p>
       <!-- <p><strong>Status:</strong> {{ order.status }}</p> -->
       <OrderActions :orderId="order._id" :currentStatus="order.status"  @change-status="changeStatus" />
