@@ -37,8 +37,8 @@ export default {
     this.filteredOrders();
 
     this.socket = io('https://sneakershop-6lmk.onrender.com', {
-    transports: ['websocket'], // Forceer websockets in plaats van polling
-});
+        transports: ['websocket'], // Forceer websockets in plaats van polling
+  });
 // Luister naar het 'new-order' event
 this.socket.on('New order', (order) => {
   console.log('Nieuwe bestelling ontvangen:', order);
@@ -196,10 +196,16 @@ h1{
   border-radius: 4px;
 }
 
-/* Responsieve container */
 .table-responsive {
-  margin-bottom: 60px;
+
   margin-left: -50px;
+}
+
+/* Stijl voor de tabel en cellen */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
 }
 .spacing-below-table {
   height: 20px; 
@@ -220,14 +226,9 @@ table tbody tr:hover td {
   background-color: #5dde40;  
 }
 
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: white;
-}
 th, td {
   text-align: left;
-  padding: 12px;
+  padding: px;
 }
 th {
   background-color: #f4f4f4;
@@ -269,10 +270,30 @@ tr:nth-child(even) {
 @media(min-width: 700px) {
   .table-responsive {
     margin-bottom: 20px;
-    margin-left: 20px;
+    margin-left: 80px;
+    margin-right: 80px;
+  }
+  th, td {
+    text-align: left;
+    padding: 14px;
   }
 
 }
+
+@media(min-width: 1000px) {
+  .table-responsive {
+    margin-bottom: 20px;
+    margin-left: 200px;
+    margin-right: 200px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 17px;
+  }
+
+}
+
 
 
 </style>

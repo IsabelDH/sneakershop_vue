@@ -1,14 +1,26 @@
 <template>
  <div class="order-detail">
-    <h1 class="text-black text-3xl font-bold">Order Detail</h1>
+    <h1 class="text-black text-3xl font-bold">Order detail</h1>
     <div class="details" v-if="order">
       <p><strong>Created at:</strong>  {{ formatDate(order.createdAt) }}</p>
       <p><strong>User:</strong> {{ order.user }}</p>
       <p><strong>Email:</strong> {{ order.email }}</p>
       <p><strong>Address:</strong> {{ order.address }}</p>
       <p><strong>Name of order:</strong> {{ order.nameOrder }}</p>
-      <p><strong>Order:</strong> {{ order.order }}</p>
-      <!-- <p><strong>Status:</strong> {{ order.status }}</p> -->
+      <div class="order-items">
+        <h3><strong>Order items:</strong></h3>
+        <div class="orders" v-for="item in order.order" :key="item._id">
+          <ul>
+            <li><strong>Name:</strong> {{ item.name || 'N/A' }}</li>
+            <li><strong>Material:</strong> {{ item.material || 'N/A' }}</li>
+            <li><strong>Color:</strong> {{ item.color || 'N/A' }}</li>
+            <li><strong>Charm:</strong> {{ item.charm || 'N/A' }}</li>
+            <li><strong>Size:</strong> {{ item.size || 'N/A' }}</li>
+            <li><strong>Quantity:</strong> {{ item.quantity || 'N/A' }}</li>
+            <li><strong>Status:</strong> {{ order.status || 'N/A' }}</li>
+          </ul>
+        </div>
+      </div>
       <OrderActions :orderId="order._id" :currentStatus="order.status"  @change-status="changeStatus" />
     </div>
     <div v-else>
@@ -29,9 +41,22 @@ export default {
       order: null,
     };
   },
+  beforeRouteEnter(to, from, next) {
+    const token = localStorage.getItem('token');
+    if (!token) {
+      // Als er geen token is, stuur de gebruiker naar de loginpagina
+      next('/login');
+    } else {
+      // Als het token bestaat, ga verder en laad de orderdetails
+      next(vm => {
+        vm.fetchOrderDetails();
+      });
+    }
+  },
   async mounted() {
     await this.fetchOrderDetails();
   },
+
   methods: {
     formatDate(date) {
       const options = { year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric'};
@@ -95,6 +120,10 @@ export default {
 };
 </script>
 <style scoped>
+ul {
+  list-style-type: disc; 
+  margin-left: 20px; 
+}
 .order-detail {
   padding: 20px;
   display: flex;
@@ -112,6 +141,11 @@ h1 {
 
 .order-detail p {
   margin-bottom: 10px;  
+}
+
+.orders{
+  margin-left: 40px;
+  margin-bottom: 20px;
 }
 
 @media(min-width: 1000px) {
