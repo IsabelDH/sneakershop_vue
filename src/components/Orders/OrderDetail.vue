@@ -17,9 +17,9 @@
             <li><strong>Material:</strong> {{ item.material || 'N/A' }}</li>
             <li><strong>Color:</strong> {{ item.color || 'N/A' }}</li>
             <li><strong>Charm:</strong> 
-              <span v-if="item.charm">
-                Name: {{ item.charm.name || 'N/A' }} | 
-                Position: {{ item.charm.position || 'N/A' }}
+              <span v-if="item.charm && item.charm.name && item.charm.position">
+                Name: {{ item.charm.name }} | 
+                Position: {{ item.charm.position }}
               </span>
               <span v-else>N/A</span>
             </li>
