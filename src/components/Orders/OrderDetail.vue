@@ -1,4 +1,6 @@
 <template>
+<div>
+  <NavBar />
  <div class="order-detail">
     <h1 class="text-black text-3xl font-bold">Order detail</h1>
     <div class="details" v-if="order">
@@ -33,6 +35,7 @@
       <p>Order details are being loaded...</p>
     </div>
   </div>
+</div>
 </template>
 
 <script>
