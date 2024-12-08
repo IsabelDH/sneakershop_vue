@@ -1,4 +1,44 @@
-<script>
+  
+  <template>
+    <nav class="navbar bg-offblack text-white">
+     <div class="logo">
+      <img src="/SWEAR_Logo.webp" alt="SWEAR logo">
+     </div>
+   </nav>
+   <div class="login bg-grey">
+     <h2 class="text-black text-2xl font-bold">Login admin</h2>
+     <form @submit.prevent="login" name="loginForm">
+       <div class="input-group">
+         <label for="email" class="text-black">Email</label>
+         <input
+           type="email"
+           id="email"
+           class="text-black"
+           v-model="email"
+           placeholder="Email"
+           required
+         />
+       </div>
+
+     <div class="input-group">
+       <label for="password"  class="text-black">Password</label>
+       <input
+         type="password"
+         id="password"
+         class="text-black"
+         v-model="password"
+         placeholder="Password"
+         required
+       />
+     </div>
+
+     <button type="submit" class="text-white bg-black hover:text-black hover:bg-secondary w-48 h-10 font-bold">Login</button>
+
+     <p v-if="error" class="text-red error">{{ error }}</p>
+     </form>
+   </div>
+ </template>
+ <script>
   import axios from 'axios';
 
   export default {
@@ -30,46 +70,7 @@
     },
   };
   </script>
-  
-  <template>
-     <nav class="navbar bg-offblack text-white">
-      <div class="logo">
-       <img src="/SWEAR_Logo.webp" alt="SWEAR logo">
-      </div>
-    </nav>
-    <div class="login bg-grey">
-      <h2 class="text-black text-2xl font-bold">Login admin</h2>
-      <form @submit.prevent="login" name="loginForm">
-        <div class="input-group">
-          <label for="email" class="text-black">Email</label>
-          <input
-            type="email"
-            id="email"
-            class="text-black"
-            v-model="email"
-            placeholder="Email"
-            required
-          />
-        </div>
 
-      <div class="input-group">
-        <label for="password"  class="text-black">Password</label>
-        <input
-          type="password"
-          id="password"
-          class="text-black"
-          v-model="password"
-          placeholder="Password"
-          required
-        />
-      </div>
-
-      <button type="submit" class="text-white bg-black hover:text-black hover:bg-secondary w-48 h-10 font-bold">Login</button>
-
-      <p v-if="error" class="text-red error">{{ error }}</p>
-      </form>
-    </div>
-  </template>
   
   <style>
   .login {
